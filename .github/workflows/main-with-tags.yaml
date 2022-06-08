@@ -15,6 +15,7 @@ jobs:
       - run: "echo extract branch name ${{github.ref_name}}"
 
   stage-deploy:
+    if: github.ref_type == 'branch'
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello stage world"
