@@ -28,7 +28,7 @@ jobs:
   prod-deploy:
     needs: branch-extract
     if: |
-      github.ref_type == 'tag' ||
+      github.ref_type == 'tag' &&
       (needs.branch-extract-outputs.branch_name == 'main')
     runs-on: ubuntu-latest
     steps:
