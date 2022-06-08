@@ -1,12 +1,35 @@
 name: Main With Tag
 on: 
-  create:
+  push:
+    branches:
+      - "main"
     tags:
       - "*"
-    
 jobs:
-  Explore-GitHub-Actions:
+  branch-extract:
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{github.ref_name}}
+  
+  stage-deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} (${{github.ref}} on $(echo ${GITHUB_REF})) and your repository is ${{ github.repository }}."
+      - name: "stage run"
+        run: echo "hello stage world"
+
+  just-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "run by tags"
+        run: echo ${{github.ref_name}}
+    
+  prod-deploy:
+    needs: branch-extract
+    if: |
+      github.ref_type == 'tag' ||
+      (needs.branch-extract-outputs.branch_name == 'main')
+    runs-on: ubuntu-latest
+    steps:
+      - name: "check branch name"
+        run: echo ${{needs.branch-extract.outputs.branch_name}}
