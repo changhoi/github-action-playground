@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       branch_name: ${{github.ref_name}}
-  
+    steps:
+      - run: "echo extract branch name ${{github.ref_name}}"
+
   stage-deploy:
     runs-on: ubuntu-latest
     steps:
