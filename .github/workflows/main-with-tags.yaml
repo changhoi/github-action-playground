@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} (${{github.ref}} on ${GITHUB_REF}) and your repository is ${{ github.repository }}."
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} (${{github.ref}} on $(echo ${GITHUB_REF})) and your repository is ${{ github.repository }}."
