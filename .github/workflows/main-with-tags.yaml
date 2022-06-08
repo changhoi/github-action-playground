@@ -21,15 +21,8 @@ jobs:
       - run: echo "hello stage world"
 
   just-tag:
+    if: github.ref_type == 'tag' 
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.ref_name}}
-    
-  prod-deploy:
-    needs: branch-extract
-    if: |
-      github.ref_type == 'tag' &&
-      (needs.branch-extract-outputs.branch_name == 'main')
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{needs.branch-extract.outputs.branch_name}}
+      - name: Echo Branch
+        run: echo "${{ github.event.base_ref }}"
