@@ -15,14 +15,12 @@ jobs:
   stage-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: "stage run"
-        run: echo "hello stage world"
+      - run: echo "hello stage world"
 
   just-tag:
     runs-on: ubuntu-latest
     steps:
-      - name: "run by tags"
-        run: echo ${{github.ref_name}}
+      - run: echo ${{github.ref_name}}
     
   prod-deploy:
     needs: branch-extract
@@ -31,5 +29,4 @@ jobs:
       (needs.branch-extract-outputs.branch_name == 'main')
     runs-on: ubuntu-latest
     steps:
-      - name: "check branch name"
-        run: echo ${{needs.branch-extract.outputs.branch_name}}
+      - run: echo ${{needs.branch-extract.outputs.branch_name}}
