@@ -3,5 +3,5 @@ package cmd
 import "fmt"
 
 func PrintHello() {
-	fmt.Println("Hello World")
+	fmt.Println("Hello Workflow")
 }
