@@ -1,7 +1,11 @@
 package main
 
-import "test/cmd"
+import (
+	"fmt"
+	"test/cmd"
+)
 
 func main() {
 	cmd.PrintHello()
+	fmt.Println("Hi")
 }

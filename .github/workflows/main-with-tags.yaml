@@ -2,7 +2,7 @@ name: Main With Tag
 on: 
   push:
     paths:
-      - "**.go"
+      - cmd
 jobs:
   just-tag: 
     runs-on: ubuntu-latest
