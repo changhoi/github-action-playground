@@ -1,8 +1,8 @@
 name: Main With Tag
 on: 
   push:
-    tags:
-      - "*"
+    paths:
+      - "**.go"
 jobs:
   just-tag: 
     runs-on: ubuntu-latest
